@@ -2,6 +2,9 @@
   name: Run Python Automation Script
   
   on:
+    push:
+        branches:
+        - main
     schedule:
       - cron: '0,6 * * * *'
     workflow_dispatch:
@@ -18,10 +21,8 @@
           uses: actions/setup-python@v4
           with:
             python-version: '3.x'
-  
-        - name: Install dependencies
-          run: |
-            pip install -r requirements.txt
+            
+        
   
         - name: Run Python script
           run: |

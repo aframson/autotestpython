@@ -1,42 +1,40 @@
+name: Run Scraping Automation Script
 
-  name: Run Python Automation Script
-  
-  on:
-    push:
-      branches:
-        - main
-    schedule:
-      - cron: '0 18 * * *'
-    workflow_dispatch:
-  
-  jobs:
-    run-script:
-      runs-on: ubuntu-latest
-  
-      steps:
-        - name: Check out repository
-          uses: actions/checkout@v4
-  
-        - name: Set up Python
-          uses: actions/setup-python@v4
-          with:
-            python-version: '3.x'
-            
-        
-  
-        - name: Run Python script
-          run: |
-            python main.py
-            
-        
-        - name: Commit changes
-          run: |
-            git config --global user.name 'github-actions'
-            git config --global user.email 'github-actions@github.com'
-            git add .
-            git commit -m 'Update log file'
-            git push
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    # Run at 10:00 AM and 4:00 PM every day
+    - cron: '06 18 * * *'
+  workflow_dispatch:
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Run Scraping Automation script
+        run: |
+          python main.py
+
+      - name: Commit results
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git add .
+          git commit -m 'Updated news data'
+          git push origin ${{ github.ref }}
+
+          
+
     
   

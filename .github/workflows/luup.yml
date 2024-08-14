@@ -1,5 +1,4 @@
-
-  name: Run Python Automation Script
+name: Run Python Automation Script
   
   on:
     push:
@@ -26,9 +25,8 @@
   
         - name: Run Python script
           run: |
-            python main.py
+            python main.js
             
-        
         - name: Commit changes
           run: |
             git config --global user.name 'github-actions'

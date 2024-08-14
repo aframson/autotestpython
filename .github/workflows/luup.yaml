@@ -1,12 +1,11 @@
-
   name: Run Python Automation Script
   
   on:
     push:
-        branches:
+      branches:
         - main
     schedule:
-      - cron: '0,10 * * * *'
+      - cron: '0,6 * * * *'
     workflow_dispatch:
   
   jobs:

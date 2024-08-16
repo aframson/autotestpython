@@ -1,4 +1,4 @@
-name: Run Python Automation Script
+ name: Run Python Automation Script
   
   on:
     push:
